@@ -1,0 +1,29 @@
+<LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Witamy w aplikacji HERBS"
+            android:id="@+id/textView4" android:layout_gravity="center_horizontal" android:layout_margin="15dp"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Celem aplikacji jest dobranie odpowiednich ziół na postawie wybranych kryterii przez użytkownika"
+            android:id="@+id/textView5" android:layout_gravity="center_horizontal" android:layout_margin="15dp"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Aplikacja pobiera listę kategorii preferencji ze zdalnego serwera. Proszę upewnić się o działającym połączeniu internetowym."
+            android:id="@+id/textView9" android:layout_gravity="center_horizontal" android:layout_margin="15dp"/>
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pobierz listę kryteriów"
+            android:id="@+id/fetch_criteria_button" android:layout_gravity="center_horizontal"
+            android:onClick="fetchCriteria" android:layout_margin="15dp"/>
+</LinearLayout>

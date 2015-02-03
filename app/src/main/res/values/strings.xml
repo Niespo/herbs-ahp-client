@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Herbs</string>
+    <string name="hello_world">Witamy w aplikacji HERBS!</string>
+    <string name="action_settings">Settings</string>
+    <string name="TOAST_MSG_SEARCHING_HERBS">Wyszukuje odpowiednie zioła! Proszę chwilkę poczekać!</string>
+    <string name="SHOPS_NOT_FOUND">Nie znaleziono sklepów</string>
+
+</resources>
