@@ -17,7 +17,6 @@ import java.util.List;
 
 
 public class HerbsEntityAdapter extends ArrayAdapter<HerbEntity> {
-
     private final Context context;
 
     private final List<HerbEntity> herbsEntities;
@@ -30,7 +29,6 @@ public class HerbsEntityAdapter extends ArrayAdapter<HerbEntity> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-
         ViewHolder viewHolder;
         if (convertView == null) {
             LayoutInflater inflater = ((Activity) context).getLayoutInflater();
@@ -91,7 +89,7 @@ public class HerbsEntityAdapter extends ArrayAdapter<HerbEntity> {
         Collections.sort(herbsEntities, new Comparator<HerbEntity>() {
             @Override
             public int compare(HerbEntity a, HerbEntity b) {
-                if (a.getAccuracy() < b.getAccuracy())
+                if (a.getAccuracy() > b.getAccuracy())
                     return -1;
                 if (a.getAccuracy() < b.getAccuracy())
                     return 1;

@@ -6,5 +6,9 @@
     <string name="action_settings">Settings</string>
     <string name="TOAST_MSG_SEARCHING_HERBS">Wyszukuje odpowiednie zioła! Proszę chwilkę poczekać!</string>
     <string name="SHOPS_NOT_FOUND">Nie znaleziono sklepów</string>
+    <string name="CHECK_INTERNET_CONNECTION">Błąd!. Sprawdz swoje połączenie internetowe!</string>
+    <string name="DOESNT_FETCH_CRITERIA">Nie udało się pobrać kryteriów!</string>
+    <string name="CRITERIA_DOWNLOAD">Pobieram kryteria! Proszę chwilkę poczekać!</string>
+    <string name="DOESNT_FETCH_HERBS">Nie udało się pobrać ziół!</string>
 
 </resources>

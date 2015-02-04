@@ -26,13 +26,12 @@ import java.util.Map;
 public class CriteriaActivity extends Activity {
 
     private HerbsCriteriaAdapter herbsCriteriaAdapter;
-    private ListView lvHerbsCriteria;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.criteria_activity);
-        lvHerbsCriteria = (ListView) findViewById(R.id.herbs_criteria_list_view);
+        ListView lvHerbsCriteria = (ListView) findViewById(R.id.herbs_criteria_list_view);
         herbsCriteriaAdapter = new HerbsCriteriaAdapter(this, Lists.<HerbsCriterion> newArrayList());
         lvHerbsCriteria.setAdapter(herbsCriteriaAdapter);
         new FetchHerbsCriteriaTask().execute();
@@ -44,7 +43,7 @@ public class CriteriaActivity extends Activity {
 
         @Override
         protected void onPreExecute() {
-            this.progressDialog.setMessage("Pobieram kryteria! Proszę chwilkę poczekać!");
+            this.progressDialog.setMessage(getString(R.string.CRITERIA_DOWNLOAD));
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
@@ -65,7 +64,7 @@ public class CriteriaActivity extends Activity {
 
                 @Override
                 public void failure(RetrofitError error) {
-                    Toast.makeText(CriteriaActivity.this, "Nie udało się pobrać kryteriów!",
+                    Toast.makeText(CriteriaActivity.this, getString(R.string.DOESNT_FETCH_CRITERIA),
                             Toast.LENGTH_SHORT).show();
                     dismissProgressBar();
                 }
@@ -91,6 +90,15 @@ public class CriteriaActivity extends Activity {
     }
 
     public void postHerbsCriteria(View view) {
+        if (!AppBus.getConnectionDetector().isConnected()) {
+            Toast.makeText(this, getString(R.string.CHECK_INTERNET_CONNECTION), Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        executeHerbsRequest();
+    }
+
+    private void executeHerbsRequest() {
         Map<String, Integer> preferenceMap = herbsCriteriaAdapter.getPreferencesMap();
         HerbsChoiceProvider preferences = new HerbsChoiceProvider.Builder()
                 .withPreferencesChoice(preferenceMap).build();

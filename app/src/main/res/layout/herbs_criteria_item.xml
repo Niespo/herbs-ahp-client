@@ -9,5 +9,6 @@
             android:layout_width="wrap_content"
             android:layout_height="71dp"
             android:text="New CheckBox"
-            android:id="@+id/herbs_criterium" android:layout_weight="0.42" android:checked="false"/>
+            android:id="@+id/herbs_criterium" android:layout_weight="0.42" android:checked="false"
+            android:textColor="#D131CC49" android:textStyle="italic" android:textSize="20dp"/>
 </LinearLayout>

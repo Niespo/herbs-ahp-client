@@ -22,14 +22,13 @@ import java.util.List;
 
 public class HerbsActivity extends Activity {
 
-    private ListView lvHerbs;
     private HerbsEntityAdapter herbsEntityAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.herbs_activity);
-        lvHerbs = (ListView) findViewById(R.id.herbs_list_view);
+        ListView lvHerbs = (ListView) findViewById(R.id.herbs_list_view);
         herbsEntityAdapter = new HerbsEntityAdapter(this, Lists.<HerbEntity> newArrayList());
         lvHerbs.setAdapter(herbsEntityAdapter);
 
@@ -66,7 +65,7 @@ public class HerbsActivity extends Activity {
 
                 @Override
                 public void failure(RetrofitError error) {
-                    Toast.makeText(HerbsActivity.this, "Nie udało się pobrać ziół!",
+                    Toast.makeText(HerbsActivity.this, getString(R.string.DOESNT_FETCH_HERBS),
                             Toast.LENGTH_SHORT).show();
                     dismissProgressBar();
                 }

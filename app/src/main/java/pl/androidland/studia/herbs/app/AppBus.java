@@ -9,10 +9,13 @@ public class AppBus extends Application {
 
     private static RestProvider restProvider;
     private static HerbsChoiceProvider herbsChoiceProvider;
+    private static ConnectionDetector connectionDetector;
 
     @Override
     public void onCreate() {
         super.onCreate();
+        connectionDetector = new ConnectionDetector(getApplicationContext());
+
     }
 
     public static RestProvider getRestProvider() {
@@ -27,5 +30,9 @@ public class AppBus extends Application {
 
     public static HerbsChoiceProvider getHerbsChoiceProvider() {
         return herbsChoiceProvider;
+    }
+
+    public static ConnectionDetector getConnectionDetector() {
+        return connectionDetector;
     }
 }
