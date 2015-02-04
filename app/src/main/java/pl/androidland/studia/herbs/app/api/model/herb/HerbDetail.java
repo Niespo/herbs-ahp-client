@@ -1,10 +1,20 @@
-package pl.androidland.studia.herbs.app.api.model;
+package pl.androidland.studia.herbs.app.api.model.herb;
 
 import com.google.gson.annotations.SerializedName;
 
-public class HerbsDetail {
+
+public class HerbDetail {
     @SerializedName("Name")
     private String name;
+
+    @SerializedName("Description")
+    private String description;
+    @SerializedName("Price")
+    private String price;
+    @SerializedName("HerbEffects")
+    private String effect;
+    @SerializedName("Id")
+    private String id;
 
     public String getName() {
         return name;
@@ -25,14 +35,4 @@ public class HerbsDetail {
     public String getId() {
         return id;
     }
-
-    @SerializedName("Description")
-
-    private String description;
-    @SerializedName("Price")
-    private String price;
-    @SerializedName("HerbEffects")
-    private String effect;
-    @SerializedName("Id")
-    private String id;
 }

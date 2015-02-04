@@ -1,10 +1,10 @@
 package pl.androidland.studia.herbs.app.api.rest;
 
-public class RestClient {
+public class RestProvider {
 
     private final HerbsService service;
 
-    public RestClient() {
+    public RestProvider() {
         service = HerbsServiceFactory.createHerbsService();
     }
 

@@ -1,4 +1,4 @@
-package pl.androidland.studia.herbs.app.api.model;
+package pl.androidland.studia.herbs.app.api.model.herb;
 
 import com.google.gson.annotations.SerializedName;
 
