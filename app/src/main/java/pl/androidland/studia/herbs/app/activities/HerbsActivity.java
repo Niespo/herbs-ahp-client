@@ -10,9 +10,9 @@ import com.google.common.collect.Lists;
 import pl.androidland.studia.herbs.app.AppBus;
 import pl.androidland.studia.herbs.app.R;
 import pl.androidland.studia.herbs.app.adapters.HerbsEntityAdapter;
-import pl.androidland.studia.herbs.app.api.model.HerbsEntity;
-import pl.androidland.studia.herbs.app.api.model.HerbsPriorityChoice;
-import pl.androidland.studia.herbs.app.api.rest.RestClient;
+import pl.androidland.studia.herbs.app.api.model.response.herb.HerbEntity;
+import pl.androidland.studia.herbs.app.api.model.request.HerbsChoiceWrapper;
+import pl.androidland.studia.herbs.app.api.rest.RestProvider;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
@@ -30,14 +30,14 @@ public class HerbsActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.herbs_activity);
         lvHerbs = (ListView) findViewById(R.id.herbs_list_view);
-        herbsEntityAdapter = new HerbsEntityAdapter(this, Lists.<HerbsEntity> newArrayList());
+        herbsEntityAdapter = new HerbsEntityAdapter(this, Lists.<HerbEntity> newArrayList());
         lvHerbs.setAdapter(herbsEntityAdapter);
 
         new FetchHerbsTask().execute();
     }
 
     private class FetchHerbsTask extends AsyncTask<Void, Void, Void> {
-        private final RestClient restClient = AppBus.getRestClient();
+        private final RestProvider restProvider = AppBus.getRestProvider();
         private final ProgressDialog progressDialog = new ProgressDialog(HerbsActivity.this);
 
         @Override
@@ -54,12 +54,12 @@ public class HerbsActivity extends Activity {
 
         @Override
         protected Void doInBackground(Void... params) {
-            HerbsPriorityChoice choice = AppBus.getHerbsPreferences().getHerbsPriorityChoice();
+            HerbsChoiceWrapper choice = AppBus.getHerbsChoiceProvider().getHerbsChoiceWrapper();
 
-            restClient.getService().findHerbs(choice, new Callback<List<HerbsEntity>>() {
+            restProvider.getService().findHerbs(choice, new Callback<List<HerbEntity>>() {
 
                 @Override
-                public void success(List<HerbsEntity> herbsEntities, Response response) {
+                public void success(List<HerbEntity> herbsEntities, Response response) {
                     fillHerbsList(herbsEntities);
                     dismissProgressBar();
                 }
@@ -85,7 +85,7 @@ public class HerbsActivity extends Activity {
 
     }
 
-    private void fillHerbsList(List<HerbsEntity> herbsEntities) {
+    private void fillHerbsList(List<HerbEntity> herbsEntities) {
         herbsEntityAdapter.clear();
         herbsEntityAdapter.addAll(herbsEntities);
         herbsEntityAdapter.notifyDataSetChanged();

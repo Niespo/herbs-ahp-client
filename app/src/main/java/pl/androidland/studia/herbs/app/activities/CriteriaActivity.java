@@ -12,9 +12,9 @@ import com.google.common.collect.Lists;
 import pl.androidland.studia.herbs.app.AppBus;
 import pl.androidland.studia.herbs.app.R;
 import pl.androidland.studia.herbs.app.adapters.HerbsCriteriaAdapter;
-import pl.androidland.studia.herbs.app.api.model.HerbsCriterion;
-import pl.androidland.studia.herbs.app.api.model.HerbsPreferences;
-import pl.androidland.studia.herbs.app.api.rest.RestClient;
+import pl.androidland.studia.herbs.app.api.model.response.HerbsCriterion;
+import pl.androidland.studia.herbs.app.api.model.request.HerbsChoiceProvider;
+import pl.androidland.studia.herbs.app.api.rest.RestProvider;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
@@ -39,7 +39,7 @@ public class CriteriaActivity extends Activity {
     }
 
     private class FetchHerbsCriteriaTask extends AsyncTask<Void, Void, Void> {
-        private final RestClient restClient = AppBus.getRestClient();
+        private final RestProvider restProvider = AppBus.getRestProvider();
         private final ProgressDialog progressDialog = new ProgressDialog(CriteriaActivity.this);
 
         @Override
@@ -56,7 +56,7 @@ public class CriteriaActivity extends Activity {
 
         @Override
         protected Void doInBackground(Void... params) {
-            restClient.getService().getCriteriaList(new Callback<List<HerbsCriterion>>() {
+            restProvider.getService().getCriteriaList(new Callback<List<HerbsCriterion>>() {
                 @Override
                 public void success(List<HerbsCriterion> herbsCriterias, Response response) {
                     fillCriteriaList(herbsCriterias);
@@ -92,9 +92,9 @@ public class CriteriaActivity extends Activity {
 
     public void postHerbsCriteria(View view) {
         Map<String, Integer> preferenceMap = herbsCriteriaAdapter.getPreferencesMap();
-        HerbsPreferences preferences = new HerbsPreferences.Builder()
+        HerbsChoiceProvider preferences = new HerbsChoiceProvider.Builder()
                 .withPreferencesChoice(preferenceMap).build();
-        AppBus.setHerbsPreferences(preferences);
+        AppBus.setHerbsChoiceProvider(preferences);
         startActivity(new Intent(this, HerbsActivity.class));
     }
 }

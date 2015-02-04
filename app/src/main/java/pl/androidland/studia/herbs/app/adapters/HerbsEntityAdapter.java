@@ -8,21 +8,21 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import pl.androidland.studia.herbs.app.R;
-import pl.androidland.studia.herbs.app.api.model.HerbsEntity;
-import pl.androidland.studia.herbs.app.api.model.ShopDetail;
+import pl.androidland.studia.herbs.app.api.model.response.herb.HerbEntity;
+import pl.androidland.studia.herbs.app.api.model.response.herb.ShopDetail;
 
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
 
-public class HerbsEntityAdapter extends ArrayAdapter<HerbsEntity> {
+public class HerbsEntityAdapter extends ArrayAdapter<HerbEntity> {
 
     private final Context context;
 
-    private final List<HerbsEntity> herbsEntities;
+    private final List<HerbEntity> herbsEntities;
 
-    public HerbsEntityAdapter(Context context, List<HerbsEntity> herbsEntities) {
+    public HerbsEntityAdapter(Context context, List<HerbEntity> herbsEntities) {
         super(context, R.layout.herbs_item, herbsEntities);
         this.context = context;
         this.herbsEntities = herbsEntities;
@@ -45,35 +45,35 @@ public class HerbsEntityAdapter extends ArrayAdapter<HerbsEntity> {
         } else
             viewHolder = (ViewHolder) convertView.getTag();
 
-        final HerbsEntity herbsEntity = this.herbsEntities.get(position);
+        final HerbEntity herbEntity = this.herbsEntities.get(position);
 
-        if (herbsEntity != null)
-            setViewHolder(viewHolder, herbsEntity);
+        if (herbEntity != null)
+            setViewHolder(viewHolder, herbEntity);
 
         return convertView;
     }
 
-    private void setViewHolder(ViewHolder viewHolder, HerbsEntity herbsEntity) {
+    private void setViewHolder(ViewHolder viewHolder, HerbEntity herbEntity) {
 
-        viewHolder.herbsName.setText(herbsEntity.getHerbsDetail().getName());
-        viewHolder.herbsPrice.setText(herbsEntity.getHerbsDetail().getPrice());
-        viewHolder.herbsAccuracy.setText(String.valueOf(herbsEntity.getAccuracy()));
-        viewHolder.herbsShops.setText(createShopsList(herbsEntity));
-        viewHolder.herbsDescription.setText(herbsEntity.getHerbsDetail().getDescription());
+        viewHolder.herbsName.setText(herbEntity.getHerbDetail().getName());
+        viewHolder.herbsPrice.setText(herbEntity.getHerbDetail().getPrice());
+        viewHolder.herbsAccuracy.setText(String.valueOf(herbEntity.getAccuracy()));
+        viewHolder.herbsShops.setText(createShopsList(herbEntity));
+        viewHolder.herbsDescription.setText(herbEntity.getHerbDetail().getDescription());
     }
 
-    private String createShopsList(HerbsEntity herbsEntity) {
+    private String createShopsList(HerbEntity herbEntity) {
         StringBuffer buffer = new StringBuffer();
-        if (herbsEntity.getShops().isEmpty())
+        if (herbEntity.getShops().isEmpty())
             buffer.append(context.getString(R.string.SHOPS_NOT_FOUND));
         else
-            createShopDescription(herbsEntity, buffer);
+            createShopDescription(herbEntity, buffer);
 
         return buffer.toString();
     }
 
-    private void createShopDescription(HerbsEntity herbsEntity, StringBuffer buffer) {
-        for (ShopDetail shopDetail : herbsEntity.getShops())
+    private void createShopDescription(HerbEntity herbEntity, StringBuffer buffer) {
+        for (ShopDetail shopDetail : herbEntity.getShops())
             buffer.append(shopDetail.getName()).append(", ").append(shopDetail.getAddress()).append(", ")
                     .append(shopDetail.getCity()).append("; ");
     }
@@ -88,9 +88,9 @@ public class HerbsEntityAdapter extends ArrayAdapter<HerbsEntity> {
 
     @Override
     public void notifyDataSetChanged() {
-        Collections.sort(herbsEntities, new Comparator<HerbsEntity>() {
+        Collections.sort(herbsEntities, new Comparator<HerbEntity>() {
             @Override
-            public int compare(HerbsEntity a, HerbsEntity b) {
+            public int compare(HerbEntity a, HerbEntity b) {
                 if (a.getAccuracy() < b.getAccuracy())
                     return -1;
                 if (a.getAccuracy() < b.getAccuracy())

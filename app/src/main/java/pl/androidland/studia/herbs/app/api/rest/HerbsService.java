@@ -1,8 +1,8 @@
 package pl.androidland.studia.herbs.app.api.rest;
 
-import pl.androidland.studia.herbs.app.api.model.HerbsCriterion;
-import pl.androidland.studia.herbs.app.api.model.HerbsEntity;
-import pl.androidland.studia.herbs.app.api.model.HerbsPriorityChoice;
+import pl.androidland.studia.herbs.app.api.model.response.HerbsCriterion;
+import pl.androidland.studia.herbs.app.api.model.response.herb.HerbEntity;
+import pl.androidland.studia.herbs.app.api.model.request.HerbsChoiceWrapper;
 import retrofit.Callback;
 import retrofit.http.Body;
 import retrofit.http.GET;
@@ -19,5 +19,5 @@ public interface HerbsService {
             "Content-type: application/json"
     })
     @POST("/herb/choose")
-    void findHerbs(@Body HerbsPriorityChoice choice, Callback<List<HerbsEntity>> chosenHerbs);
+    void findHerbs(@Body HerbsChoiceWrapper choice, Callback<List<HerbEntity>> chosenHerbs);
 }

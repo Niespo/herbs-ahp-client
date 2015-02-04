@@ -1,31 +1,31 @@
 package pl.androidland.studia.herbs.app;
 
 import android.app.Application;
-import pl.androidland.studia.herbs.app.api.model.HerbsPreferences;
-import pl.androidland.studia.herbs.app.api.rest.RestClient;
+import pl.androidland.studia.herbs.app.api.model.request.HerbsChoiceProvider;
+import pl.androidland.studia.herbs.app.api.rest.RestProvider;
 
 
 public class AppBus extends Application {
 
-    private static RestClient restClient;
-    private static HerbsPreferences herbsPreferences;
+    private static RestProvider restProvider;
+    private static HerbsChoiceProvider herbsChoiceProvider;
 
     @Override
     public void onCreate() {
         super.onCreate();
     }
 
-    public static RestClient getRestClient() {
-        if (restClient == null)
-            restClient = new RestClient();
-        return restClient;
+    public static RestProvider getRestProvider() {
+        if (restProvider == null)
+            restProvider = new RestProvider();
+        return restProvider;
     }
 
-    public static void setHerbsPreferences(HerbsPreferences preferences) {
-        herbsPreferences = preferences;
+    public static void setHerbsChoiceProvider(HerbsChoiceProvider preferences) {
+        herbsChoiceProvider = preferences;
     }
 
-    public static HerbsPreferences getHerbsPreferences() {
-        return herbsPreferences;
+    public static HerbsChoiceProvider getHerbsChoiceProvider() {
+        return herbsChoiceProvider;
     }
 }

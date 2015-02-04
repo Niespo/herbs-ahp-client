@@ -10,7 +10,8 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name=".activities.MainActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -18,9 +19,11 @@
             </intent-filter>
         </activity>
         <activity
-                android:name=".activities.CriteriaActivity"/>
+                android:name=".activities.CriteriaActivity"
+                android:screenOrientation="portrait"/>
         <activity
-                android:name=".activities.HerbsActivity"/>
+                android:name=".activities.HerbsActivity"
+                android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

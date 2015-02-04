@@ -9,7 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import com.google.common.collect.Maps;
 import pl.androidland.studia.herbs.app.R;
-import pl.androidland.studia.herbs.app.api.model.HerbsCriterion;
+import pl.androidland.studia.herbs.app.api.model.response.HerbsCriterion;
 
 import java.util.List;
 import java.util.Map;
